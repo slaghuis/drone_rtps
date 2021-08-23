@@ -1,9 +1,10 @@
 # xdrone-Fast-RTPS
 A ROS2 node that interfaces to PX4 using Fast RTPS and published enough to get he navigation stack running.
-This thing runs in the Gazebo simulator, but I have not bable to test it against a flight controller yet.  I could not get the RTPS/ROS2 PX4-FastRTPS Bridge installed on the Raspberry Pi yet.   
+This thing runs in the Gazebo simulator, but I have not bable to test it against a flight controller yet.  This is planned for September 2021
 
-# Features
-This node publishes tf2 transform, although, since it is a static trasform I think it is better done in the lanch file.
+# Dependencies
+This node depends on the drone_interfaces package elsewhere in my repository
 
 # Outstanding
-This node needs to be lifted to an action server, with actions for arm, takeoff, land and disarm.
+This node needs to be tested in a simulator, and then compiled and tested on a flight controller.
+Further enhancements could include a similar node that deals with world frames (GPS coordinates)
