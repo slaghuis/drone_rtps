@@ -1,6 +1,14 @@
-# drone_rtps
+# Drone RTPS
 A ROS2 node that interfaces to PX4 using Fast RTPS and published enough to get the navigation stack running.
 This thing runs in the Gazebo simulator, but I have not bable to test it against a flight controller yet.  This is planned for September 2021
+
+## WARNING
+This node has fallen a bit behind the Drone_MAVSDK version.  To bring it up to date, add 
+- a map->odom transfom publisher,
+- battery state publisher
+- subscrive to the downward pointing range sensor and pass to flight controller
+- gps position publisher (optional) 
+Consult with the drone_mavsdk node for examples of how this is done.  This is a valid starting point though.
 
 ## Dependencies
 This node depends on the [drone_interfaces package](https://github.com/slaghuis/drone_interfaces).
