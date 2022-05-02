@@ -1,5 +1,5 @@
-#ifndef DRONE_NODE__VISIBILITY_CONTROL_H_
-#define DRONE_NODE__VISIBILITY_CONTROL_H_
+#ifndef DRONE__VISIBILITY_H_
+#define DRONE__VISIBILITY_H_
 
 #ifdef __cplusplus
 extern "C"
@@ -10,35 +10,43 @@ extern "C"
 //     https://gcc.gnu.org/wiki/Visibility
 
 #if defined _WIN32 || defined __CYGWIN__
+
   #ifdef __GNUC__
-    #define DRONE_NODE_EXPORT __attribute__ ((dllexport))
-    #define DRONE_NODE_IMPORT __attribute__ ((dllimport))
+    #define DRONE_EXPORT __attribute__ ((dllexport))
+    #define DRONE_IMPORT __attribute__ ((dllimport))
   #else
-    #define DRONE_NODE_EXPORT __declspec(dllexport)
-    #define DRONE_NODE_IMPORT __declspec(dllimport)
+    #define DRONE_EXPORT __declspec(dllexport)
+    #define DRONE_IMPORT __declspec(dllimport)
   #endif
-  #ifdef DRONE_NODE_BUILDING_DLL
-    #define DRONE_NODE_PUBLIC DRONE_NODE_EXPORT
+
+  #ifdef DRONE_DLL
+    #define DRONE_PUBLIC DRONE_EXPORT
   #else
-    #define DRONE_NODE_PUBLIC DRONE_NODE_IMPORT
+    #define DRONE_PUBLIC DRONE_IMPORT
   #endif
-  #define DRONE_NODE_PUBLIC_TYPE DRONE_NODE_PUBLIC
-  #define DRONE_NODE_LOCAL
+
+  #define DRONE_PUBLIC_TYPE DRONE_PUBLIC
+
+  #define DRONE_LOCAL
+
 #else
-  #define DRONE_NODE_EXPORT __attribute__ ((visibility("default")))
-  #define DRONE_NODE_IMPORT
+
+  #define DRONE_EXPORT __attribute__ ((visibility("default")))
+  #define DRONE_IMPORT
+
   #if __GNUC__ >= 4
-    #define DRONE_NODE_PUBLIC __attribute__ ((visibility("default")))
-    #define DRONE_NODE_LOCAL  __attribute__ ((visibility("hidden")))
+    #define DRONE_PUBLIC __attribute__ ((visibility("default")))
+    #define DRONE_LOCAL  __attribute__ ((visibility("hidden")))
   #else
-    #define DRONE_NODE_PUBLIC
-    #define DRONE_NODE_LOCAL
+    #define DRONE_PUBLIC
+    #define DRONE_LOCAL
   #endif
-  #define DRONE_NODE_PUBLIC_TYPE
+
+  #define DRONE_PUBLIC_TYPE
 #endif
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  // DRONE_NODE__VISIBILITY_CONTROL_H_
+#endif  // DRONE__VISIBILITY_H_
